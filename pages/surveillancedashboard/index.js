@@ -6,35 +6,16 @@ import Moment from "react-moment"
 
 import { CheckIcon } from "@heroicons/react/outline"
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-
-  const res = await fetch(
-    "http://afe47cabd8457497fbc403ec51c1c83a-1958255376.ap-east-1.elb.amazonaws.com:9001/seccam/view"
-  )
-  console.log("RES", res)
-  if (res.status == 200) {
-    const data = await res.json()
-    return { props: { data } }
-  } else {
-    const data = [
-      {
-        pkey: "Empty-No Data Available from the Database",
-        datetime: "Empty-No Data Available",
-        picture: "Empty-No Data Available",
-        rfuid: "Empty-No Data Available",
-      },
-    ]
-    return { props: { data } }
-  }
-
-  // Pass data to the page via props
-}
-
+const list = [
+  {
+    email: "dan@gmail.com",
+    pkey: "1",
+    datetime: "July 6, 2022",
+    keyid: "123456",
+    rfuid: "12345",
+  },
+]
 export default function dashboard(props) {
-  const list = props.data
-
-  console.log("DATA", list.length)
   return (
     <div className="bg-white">
       <Navbar />
@@ -139,8 +120,8 @@ export default function dashboard(props) {
                           <div className=" items-center grid grid-cols-1">
                             <ModalImage
                               className="h-10 w-10 rounded-full"
-                              small={`http://afe47cabd8457497fbc403ec51c1c83a-1958255376.ap-east-1.elb.amazonaws.com:9001/images/${capture.picture}`}
-                              large={`http://afe47cabd8457497fbc403ec51c1c83a-1958255376.ap-east-1.elb.amazonaws.com:9001/images/${capture.picture}`}
+                              small={`https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80`}
+                              large={`https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80`}
                               alt={capture.keyid}
                               showRotate={true}
                             ></ModalImage>
